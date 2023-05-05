@@ -51,7 +51,8 @@ typealias NetworkError = NetworkService.NetworkError
 class NetworkServiceTests: XCTestCase {
     
     func test_performRequest_startsNetworkRequest() async {
-        let (sut, session) = makeSUT()
+        let anyValidResult = (Data(), httpResponse(statusCode: 200))
+        let (sut, session) = makeSUT(result: .success(anyValidResult))
         
         XCTAssertFalse(session.didStartRequest)
         
