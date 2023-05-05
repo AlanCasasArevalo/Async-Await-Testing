@@ -48,17 +48,20 @@ typealias NetworkError = NetworkService.NetworkError
 
 class NetworkServiceTests: XCTestCase {
     
+    func test_performRequest_doesNotStartsNetworkRequest() async throws {
+        let (_, session) = makeSUT()
+        XCTAssertEqual(session.requests, [] , "Precondition: should not perform request")
+    }
+
     func test_performRequest_startsNetworkRequest() async throws {
-        let (sut, session) = makeSUT(result: .success(anyValidResult()))
+        let (sut, session) = makeSUT()
         let request = anyRequest()
 
-        XCTAssertEqual(session.requests, [] , "Precondition: should not perform request")
-        
         _ = try await sut.performRequest(request)
-        
+
         XCTAssertEqual(session.requests, [request])
     }
-    
+
 //    func test_performRequest_deliversConnectivityErrorOnNetworkError() async {
 //        let (sut, session) = makeSUT()
 //
