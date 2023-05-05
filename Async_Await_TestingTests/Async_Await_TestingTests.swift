@@ -97,24 +97,22 @@ class NetworkServiceTests: XCTestCase {
 }
 
 extension NetworkServiceTests {
-    
-    private func makeSUT(result: Result<(Data, URLResponse), Error>) -> (sut: NetworkService, session: URLSessionSpy) {
+    private func makeSUT(result: Result<(Data, URLResponse), Error> = .success(anyValidResult())) -> (sut: NetworkService, session: URLSessionSpy) {
         let session = URLSessionSpy(result: result)
         let sut = NetworkService(session: session)
         return (sut, session)
     }
-    
-    private func anyRequest(urlString: String = "https://a-url.com") -> URLRequest {
-        URLRequest(url: URL(string: urlString)!)
-    }
-    
-    private func httpResponse(url: URL = URL(string: "https://a-url.com")!, statusCode: Int) -> HTTPURLResponse {
-        HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-    }
+}
+func anyRequest(urlString: String = "https://a-url.com") -> URLRequest {
+    URLRequest(url: URL(string: urlString)!)
+}
 
-    private func anyValidResult(statusCode: Int = 200) -> (Data, HTTPURLResponse) {
-        (Data(), httpResponse(statusCode: statusCode))
-    }
+func httpResponse(url: URL = URL(string: "https://a-url.com")!, statusCode: Int) -> HTTPURLResponse {
+    HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+}
+
+func anyValidResult(statusCode: Int = 200) -> (Data, HTTPURLResponse) {
+    (Data(), httpResponse(statusCode: statusCode))
 }
 
 private final class URLSessionSpy: URLSessionProtocol {
