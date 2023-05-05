@@ -62,17 +62,16 @@ class NetworkServiceTests: XCTestCase {
         XCTAssertEqual(session.requests, [request])
     }
 
-//    func test_performRequest_deliversConnectivityErrorOnNetworkError() async {
-//        let (sut, session) = makeSUT()
-//
-//        session.completeWith(.connectivity)
-//
-//        do {
-//            _ = try await sut.performRequest(anyRequest())
-//        } catch {
-//            XCTAssertEqual(error as? NetworkError , NetworkError.connectivity)
-//        }
-//    }
+    func test_performRequest_deliversConnectivityErrorOnNetworkError() async {
+        let (sut, _) = makeSUT(result: .failure(anyError()))
+
+        do {
+            _ = try await sut.performRequest(anyRequest())
+            XCTFail("Expected  error: \(NetworkError.connectivity)")
+        } catch {
+            XCTAssertEqual(error as? NetworkError , NetworkError.connectivity)
+        }
+    }
 //
 //    func test_performRequest_deliversBadResponseCodeErrorOnNon200HttpResponse() async {
 //        let (sut, session) = makeSUT()
@@ -116,6 +115,12 @@ func httpResponse(url: URL = URL(string: "https://a-url.com")!, statusCode: Int)
 
 func anyValidResult(statusCode: Int = 200) -> (Data, HTTPURLResponse) {
     (Data(), httpResponse(statusCode: statusCode))
+}
+
+struct AnyError: Error {}
+
+func anyError() -> Error {
+    AnyError()
 }
 
 private final class URLSessionSpy: URLSessionProtocol {
