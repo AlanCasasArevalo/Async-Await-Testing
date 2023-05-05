@@ -17,8 +17,6 @@ enum HTTPMethod: String {
     case put = "PUT"
 }
 
-
-
 public final class NetworkService {
     private let session: URLsessionProtocol
     
@@ -54,11 +52,10 @@ class NetworkServiceTests: XCTestCase {
         let (sut, session) = makeSUT(result: .success(anyValidResult()))
         let request = anyRequest()
 
-        XCTAssertFalse(session.didStartRequest)
+        XCTAssertNil(session.request, "Precondition: should not perform request")
         
         _ = try await sut.performRequest(request)
         
-        XCTAssertTrue(session.didStartRequest)
         XCTAssertEqual(session.request, request)
     }
     
@@ -121,8 +118,7 @@ extension NetworkServiceTests {
 }
 
 private final class URLSessionSpy: URLsessionProtocol {
-    var didStartRequest: Bool = false
-    var request: URLRequest?
+    private(set) var request: URLRequest?
     let result: Result<(Data, URLResponse), Error>
 
     init(result: Result<(Data, URLResponse), Error>) {
@@ -130,7 +126,6 @@ private final class URLSessionSpy: URLsessionProtocol {
     }
     
     func fetchRequest(request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
-        didStartRequest = true
         self.request = request
         return try result.get()
     }
