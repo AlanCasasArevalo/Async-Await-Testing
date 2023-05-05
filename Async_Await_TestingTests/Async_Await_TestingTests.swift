@@ -1,11 +1,11 @@
 import Foundation
 import XCTest
 
-public protocol URLsessionProtocol {
+public protocol URLSessionProtocol {
     func fetchRequest(request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 }
 
-extension URLSession: URLsessionProtocol {
+extension URLSession: URLSessionProtocol {
     public func fetchRequest(request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
         try await data(for: request, delegate: delegate)
     }
@@ -18,9 +18,9 @@ enum HTTPMethod: String {
 }
 
 public final class NetworkService {
-    private let session: URLsessionProtocol
+    private let session: URLSessionProtocol
     
-    public init(session: URLsessionProtocol) {
+    public init(session: URLSessionProtocol) {
         self.session = session
     }
         
@@ -117,7 +117,7 @@ extension NetworkServiceTests {
     }
 }
 
-private final class URLSessionSpy: URLsessionProtocol {
+private final class URLSessionSpy: URLSessionProtocol {
     private(set) var requests: [URLRequest?] = []
     let result: Result<(Data, URLResponse), Error>
 
