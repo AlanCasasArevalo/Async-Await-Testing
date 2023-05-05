@@ -53,13 +53,14 @@ class NetworkServiceTests: XCTestCase {
     func test_performRequest_startsNetworkRequest() async {
         let anyValidResult = (Data(), httpResponse(statusCode: 200))
         let (sut, session) = makeSUT(result: .success(anyValidResult))
-        
+        let request = anyRequest()
+
         XCTAssertFalse(session.didStartRequest)
         
-        _ = try? await sut.performRequest(anyRequest())
+        _ = try? await sut.performRequest(request)
         
         XCTAssertTrue(session.didStartRequest)
-        XCTAssertEqual(session.request, anyRequest())
+        XCTAssertEqual(session.request, request)
     }
     
 //    func test_performRequest_deliversConnectivityErrorOnNetworkError() async {
