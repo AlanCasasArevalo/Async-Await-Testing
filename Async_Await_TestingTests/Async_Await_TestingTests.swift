@@ -25,6 +25,7 @@ public final class NetworkService {
     }
         
     public func performRequest(_ request: URLRequest) async throws -> Data {
+        _ = try await session.fetchRequest(request: request, delegate: nil)
         do {
             let (data, response) = try await session.fetchRequest(request: request, delegate: nil)
             guard let response = response as? HTTPURLResponse, response.statusCode >= 200 else {
@@ -52,11 +53,11 @@ class NetworkServiceTests: XCTestCase {
         let (sut, session) = makeSUT(result: .success(anyValidResult()))
         let request = anyRequest()
 
-        XCTAssertNil(session.request, "Precondition: should not perform request")
+        XCTAssertEqual(session.requests, [] , "Precondition: should not perform request")
         
         _ = try await sut.performRequest(request)
         
-        XCTAssertEqual(session.request, request)
+        XCTAssertEqual(session.requests, [request])
     }
     
 //    func test_performRequest_deliversConnectivityErrorOnNetworkError() async {
@@ -118,7 +119,7 @@ extension NetworkServiceTests {
 }
 
 private final class URLSessionSpy: URLsessionProtocol {
-    private(set) var request: URLRequest?
+    private(set) var requests: [URLRequest?] = []
     let result: Result<(Data, URLResponse), Error>
 
     init(result: Result<(Data, URLResponse), Error>) {
@@ -126,7 +127,7 @@ private final class URLSessionSpy: URLsessionProtocol {
     }
     
     func fetchRequest(request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
-        self.request = request
+        self.requests.append(request)
         return try result.get()
     }
 }
