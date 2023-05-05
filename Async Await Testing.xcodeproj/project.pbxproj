@@ -7,12 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C009001D2A056C13008E31BA /* Async_Await_Testing.h in Headers */ = {isa = PBXBuildFile; fileRef = C009001C2A056C13008E31BA /* Async_Await_Testing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C009002A2A056C27008E31BA /* Async_Await_TestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00900292A056C27008E31BA /* Async_Await_TestingTests.swift */; };
+		C009002B2A056C27008E31BA /* Async_Await_Testing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C00900192A056C13008E31BA /* Async_Await_Testing.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C009002C2A056C27008E31BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C00900102A056C13008E31BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C00900182A056C13008E31BA;
+			remoteInfo = "Async Await Testing";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C00900192A056C13008E31BA /* Async_Await_Testing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Async_Await_Testing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C009001C2A056C13008E31BA /* Async_Await_Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Async_Await_Testing.h; sourceTree = "<group>"; };
+		C00900272A056C27008E31BA /* Async_Await_TestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Async_Await_TestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C00900292A056C27008E31BA /* Async_Await_TestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Async_Await_TestingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -23,6 +35,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C00900242A056C27008E31BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C009002B2A056C27008E31BA /* Async_Await_Testing.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -30,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				C009001B2A056C13008E31BA /* Async Await Testing */,
+				C00900282A056C27008E31BA /* Async_Await_TestingTests */,
 				C009001A2A056C13008E31BA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -38,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				C00900192A056C13008E31BA /* Async_Await_Testing.framework */,
+				C00900272A056C27008E31BA /* Async_Await_TestingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -45,9 +67,16 @@
 		C009001B2A056C13008E31BA /* Async Await Testing */ = {
 			isa = PBXGroup;
 			children = (
-				C009001C2A056C13008E31BA /* Async_Await_Testing.h */,
 			);
 			path = "Async Await Testing";
+			sourceTree = "<group>";
+		};
+		C00900282A056C27008E31BA /* Async_Await_TestingTests */ = {
+			isa = PBXGroup;
+			children = (
+				C00900292A056C27008E31BA /* Async_Await_TestingTests.swift */,
+			);
+			path = Async_Await_TestingTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -57,7 +86,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C009001D2A056C13008E31BA /* Async_Await_Testing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +110,24 @@
 			productReference = C00900192A056C13008E31BA /* Async_Await_Testing.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C00900262A056C27008E31BA /* Async_Await_TestingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C009002E2A056C27008E31BA /* Build configuration list for PBXNativeTarget "Async_Await_TestingTests" */;
+			buildPhases = (
+				C00900232A056C27008E31BA /* Sources */,
+				C00900242A056C27008E31BA /* Frameworks */,
+				C00900252A056C27008E31BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C009002D2A056C27008E31BA /* PBXTargetDependency */,
+			);
+			name = Async_Await_TestingTests;
+			productName = Async_Await_TestingTests;
+			productReference = C00900272A056C27008E31BA /* Async_Await_TestingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -89,9 +135,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					C00900182A056C13008E31BA = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					C00900262A056C27008E31BA = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -110,12 +160,20 @@
 			projectRoot = "";
 			targets = (
 				C00900182A056C13008E31BA /* Async Await Testing */,
+				C00900262A056C27008E31BA /* Async_Await_TestingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C00900172A056C13008E31BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C00900252A056C27008E31BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,7 +190,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C00900232A056C27008E31BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C009002A2A056C27008E31BA /* Async_Await_TestingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C009002D2A056C27008E31BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C00900182A056C13008E31BA /* Async Await Testing */;
+			targetProxy = C009002C2A056C27008E31BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C009001E2A056C13008E31BA /* Debug */ = {
@@ -310,6 +384,36 @@
 			};
 			name = Release;
 		};
+		C009002F2A056C27008E31BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5J2G4846S8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alancasasarevalo-gmail.com.Async-Await-TestingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C00900302A056C27008E31BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5J2G4846S8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "alancasasarevalo-gmail.com.Async-Await-TestingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -327,6 +431,15 @@
 			buildConfigurations = (
 				C00900212A056C13008E31BA /* Debug */,
 				C00900222A056C13008E31BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C009002E2A056C27008E31BA /* Build configuration list for PBXNativeTarget "Async_Await_TestingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C009002F2A056C27008E31BA /* Debug */,
+				C00900302A056C27008E31BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
