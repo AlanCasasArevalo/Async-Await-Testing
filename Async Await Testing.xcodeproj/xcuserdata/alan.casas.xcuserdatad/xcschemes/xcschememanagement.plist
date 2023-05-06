@@ -21,6 +21,13 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>NetworkServiceTests.test_performRequest_deliversBadResponseCodeErrorOnNon200HttpResponse.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 </dict>
 </plist>

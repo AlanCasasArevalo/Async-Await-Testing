@@ -27,7 +27,7 @@ public final class NetworkService {
     public func performRequest(_ request: URLRequest) async throws -> Data {
         do {
             let (data, response) = try await session.fetchRequest(request: request, delegate: nil)
-            guard let response = response as? HTTPURLResponse, response.statusCode >= 200 else {
+            guard let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode <= 299 else {
                 throw NetworkError.invalidData
             }
             
