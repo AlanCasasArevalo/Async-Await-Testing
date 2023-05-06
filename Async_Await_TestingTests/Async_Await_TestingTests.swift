@@ -1,52 +1,12 @@
 import Foundation
 import XCTest
-
-public protocol URLSessionProtocol {
-    func fetchRequest(request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: URLSessionProtocol {
-    public func fetchRequest(request: URLRequest, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
-        try await data(for: request, delegate: delegate)
-    }
-}
-
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-}
-
-public final class NetworkService {
-    private let session: URLSessionProtocol
-    
-    public init(session: URLSessionProtocol) {
-        self.session = session
-    }
-        
-    public func performRequest(_ request: URLRequest) async throws -> Data {
-        guard let (data, response) = try? await session.fetchRequest(request: request, delegate: nil) else {
-            throw NetworkError.connectivity
-        }
-
-        guard let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode <= 299 else {
-            throw NetworkError.invalidData
-        }
-        return data
-    }
-    
-    enum NetworkError: Error {
-        case invalidData
-        case connectivity
-    }
-
-}
+@testable import Async_Await_Testing
 
 typealias NetworkError = NetworkService.NetworkError
 
 class NetworkServiceTests: XCTestCase {
     
-    func test_performRequest_doesNotStartsNetworkRequest() async throws {
+    func test_performRequest_doesNotStartsNetworkRequest() {
         let (_, session) = makeSUT()
         XCTAssertEqual(session.requests, [] , "Precondition: should not perform request")
     }
@@ -99,23 +59,6 @@ extension NetworkServiceTests {
         let sut = NetworkService(session: session)
         return (sut, session)
     }
-}
-func anyRequest(urlString: String = "https://a-url.com") -> URLRequest {
-    URLRequest(url: URL(string: urlString)!)
-}
-
-func httpResponse(url: URL = URL(string: "https://a-url.com")!, statusCode: Int) -> HTTPURLResponse {
-    HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-}
-
-func anyValidResult(statusCode: Int = 200) -> (Data, HTTPURLResponse) {
-    (Data(), httpResponse(statusCode: statusCode))
-}
-
-struct AnyError: Error {}
-
-func anyError() -> Error {
-    AnyError()
 }
 
 private final class URLSessionSpy: URLSessionProtocol {
