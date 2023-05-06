@@ -82,17 +82,15 @@ class NetworkServiceTests: XCTestCase {
             XCTAssertEqual(error as? NetworkError, NetworkError.invalidData)
         }
     }
-//
-//    func test_performRequest_deliversDataOn200HttpResponse() async throws {
-//        let (sut, session) = makeSUT()
-//
-//        let validData = Data("some data".utf8)
-//        let validResponse = httpResponse(statusCode: 200)
-//        session.completeWith((validData, validResponse))
-//
-//        let receivedData = try await sut.performRequest(anyRequest())
-//        XCTAssertEqual(receivedData, validData)
-//    }
+
+    func test_performRequest_deliversDataOn200HttpResponse() async throws {
+        let validData = Data("some data".utf8)
+        let validResponse = httpResponse(statusCode: 200)
+        let (sut, _) = makeSUT(result: .success((validData, validResponse)))
+
+        let receivedData = try await sut.performRequest(anyRequest())
+        XCTAssertEqual(receivedData, validData)
+    }
 }
 
 extension NetworkServiceTests {
