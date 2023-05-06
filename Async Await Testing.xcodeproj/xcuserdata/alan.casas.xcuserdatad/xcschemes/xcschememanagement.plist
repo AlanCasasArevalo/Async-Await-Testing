@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Async Await Testing.xcscheme</key>
+		<key>Async Await Testing.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -16,17 +16,21 @@
 		</dict>
 		<key>NetworkServiceTests.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false />
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
 		<key>NetworkServiceTests.test_performRequest_deliversBadResponseCodeErrorOnNon200HttpResponse.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false />
 			<key>orderHint</key>
 			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C00900262A056C27008E31BA</key>
+		<dict>
+			<key>primary</key>
+			<true />
 		</dict>
 	</dict>
 </dict>
