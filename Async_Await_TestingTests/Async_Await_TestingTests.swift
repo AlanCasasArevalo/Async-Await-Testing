@@ -72,19 +72,18 @@ class NetworkServiceTests: XCTestCase {
             XCTAssertEqual(error as? NetworkError , NetworkError.connectivity)
         }
     }
-//
-//    func test_performRequest_deliversBadResponseCodeErrorOnNon200HttpResponse() async {
-//        let (sut, session) = makeSUT()
-//
-//        let someResult = (Data(), httpResponse(statusCode: 400))
-//        session.completeWith(someResult)
-//
-//        do {
-//            _ = try await sut.performRequest(anyRequest())
-//        } catch {
-//            XCTAssertEqual(error as? NetworkError , NetworkError.invalidData)
-//        }
-//    }
+
+    func test_performRequest_deliversBadResponseCodeErrorOnNon200HttpResponse() async throws {
+        let non200Response = (Data(), httpResponse(statusCode: 400))
+        let (sut, _) = makeSUT(result: .success(non200Response))
+
+        do {
+            _ = try await sut.performRequest(anyRequest())
+            XCTFail("Expected  error: \(NetworkError.invalidData)")
+        } catch {
+            XCTAssertEqual(error as? NetworkError, NetworkError.invalidData)
+        }
+    }
 //
 //    func test_performRequest_deliversDataOn200HttpResponse() async throws {
 //        let (sut, session) = makeSUT()
